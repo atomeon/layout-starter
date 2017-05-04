@@ -1,6 +1,9 @@
-# Forbes.kz - фронтенд
-
+# Layout-starter - набор с инструментарием для быстрой вёрстки
+ 
 ## Сборка проекта
+
+Предустановленный фреймворк: 
+* Zurb-Foundation 6
 
 Необходимые программы: [NodeJS](https://nodejs.org/en/), [Bower](https://bower.io/)
 
@@ -12,4 +15,7 @@
 
 (_После вышеуказанных комманд, для пересборки_)
 * gulp (сборка для разработки, также запускает browser-sync на http://localhost:3000)
-* gulp production (для production версии)
+* gulp build (для production версии)
+
+
+ 
