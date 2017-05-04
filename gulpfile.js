@@ -10,6 +10,7 @@ var minify = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var jsonfile = require('jsonfile');
 var panini = require('panini');
+var purify = require('gulp-purifycss');
 
 var config = jsonfile.readFileSync('./config.json');
 
@@ -63,7 +64,8 @@ gulp.task('browser-sync', function () {
     browserSync.init({
         "server": {
             "baseDir": config.dist
-        }
+        },
+        open: false
     });
 });
 
@@ -94,19 +96,25 @@ gulp.task('compress-sass', ['sass'], function () {
         .pipe(gulp.dest(config.dist + 'css'));
 });
 
+gulp.task('purify-css', ['js', 'compress-sass'], function() {
+    return gulp.src('./dist/css/*.css')
+        .pipe(purify(['./dist/js/**/*.js', './dist/**/*.html']))
+        .pipe(gulp.dest('./dist/css'));
+});
+
 gulp.task('fonts', () => {
     return gulp.src(config.source + '/fonts/**')
         .pipe(gulp.dest(config.dist ));
 });
 
-gulp.task('dropbox', function() {
-    return gulp.src(config.dist + '/**/*')
-    .pipe(gulp.dest('/Users/atomeon/Dropbox/cabinet-markup'));
-});
+// gulp.task('dropbox', function() {
+//     return gulp.src(config.dist + '/**/*')
+//     .pipe(gulp.dest('/Users/atomeon/Dropbox/cabinet-markup'));
+// });
 
-gulp.task('build', ['js', 'sass', 'imagemin']);
+gulp.task('build', ['purify-css', 'imagemin']);
 
-gulp.task('serve', ['pages', 'imagemin', 'fonts', 'sass', 'js', 'compress-sass', 'browser-sync'], function () {
+gulp.task('serve', ['pages', 'imagemin', 'fonts', 'purify-css', 'compress-sass', 'browser-sync'], function () {
     gulp.watch([config.source + 'templates/pages/**/*'], ['pages']);
     gulp.watch([config.source + 'templates/{layouts,partials,helpers,data}/**/*'], ['pages:reset']);
     gulp.watch([config.source + 'scss/**/*.scss'], ['sass', 'compress-sass']);
