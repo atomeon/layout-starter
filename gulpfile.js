@@ -11,6 +11,25 @@ var imagemin = require('gulp-imagemin');
 var jsonfile = require('jsonfile');
 var panini = require('panini');
 var purify = require('gulp-purifycss');
+var tinypng = require('gulp-tinypng-compress');
+var svgSprite = require('gulp-svg-sprite');
+
+gulp.task('svgSprite', () =>
+    gulp.src(config.source + 'img/*.svg')
+	.pipe(svgSprite({
+            mode: {
+                // inline: true,
+                symbol:  {
+                    dest: "",	
+                    sprite : "sprite.svg",
+                    // bust: true,
+                }
+            }
+        }))
+	.pipe(gulp.dest(config.dist + 'img'))
+);
+
+
 
 var config = jsonfile.readFileSync('./config.json');
 
@@ -20,11 +39,22 @@ var sassPaths = [
     'node_modules/normalize.css',
 ];
 
-gulp.task('imagemin', () =>
-    gulp.src(config.source + 'images/*')
+gulp.task('imagemin-svg', () =>
+    gulp.src(config.source + 'img/*.svg')
         .pipe(imagemin())
-        .pipe(gulp.dest(config.dist + 'images'))
+        .pipe(gulp.dest(config.dist + 'img'))
 );
+
+ 
+gulp.task('tinypng', function () {
+    gulp.src(config.source + 'img/*.{png,jpg,jpeg}')
+        .pipe(tinypng({
+            key: 'cvgVuitXUIQqFq8qlAVF9u8y_weEqmYL',
+            sigFile: config.source + 'img/.tinypng-sigs',
+            log: true
+        }))
+    .pipe(gulp.dest(config.dist + 'img'));
+});
 
 gulp.task('sass', function () {
     return gulp.src(config.source + 'scss/app.scss')
@@ -112,15 +142,18 @@ gulp.task('fonts', () => {
 //     .pipe(gulp.dest('/Users/atomeon/Dropbox/cabinet-markup'));
 // });
 
-gulp.task('build', ['purify-css', 'imagemin']);
+gulp.task('build', ['purify-css', 'tinypng']);
 
-gulp.task('serve', ['pages', 'imagemin', 'fonts', 'purify-css', 'compress-sass', 'browser-sync'], function () {
+gulp.task('serve', ['pages', 'tinypng', 'fonts', 'js', 'compress-sass', 'compress-sass', 'browser-sync'], function () {
     gulp.watch([config.source + 'templates/pages/**/*'], ['pages']);
     gulp.watch([config.source + 'templates/{layouts,partials,helpers,data}/**/*'], ['pages:reset']);
     gulp.watch([config.source + 'scss/**/*.scss'], ['sass', 'compress-sass']);
     gulp.watch([config.source + 'css/*.css']).on('change', browserSync.reload);
     gulp.watch([config.source + 'js/*.js'], ['js']);
     gulp.watch([config.source + 'js/*.js']).on('change', browserSync.reload);
+    gulp.watch([config.source + 'img/*'], ['tinypng']);
+    gulp.watch([config.source + 'img/*'], ['imagemin-svg']);
+    gulp.watch([config.dist + 'img/*']).on('change', browserSync.reload);
     gulp.watch([config.dist + "*.html"]).on('change', browserSync.reload);
 });
 
