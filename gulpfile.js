@@ -13,6 +13,7 @@ var panini = require('panini');
 var purify = require('gulp-purifycss');
 var tinypng = require('gulp-tinypng-compress');
 var svgSprite = require('gulp-svg-sprite');
+var inject = require('gulp-inject');
 
 gulp.task('svgSprite', () =>
     gulp.src(config.source + 'img/*.svg')
@@ -21,12 +22,12 @@ gulp.task('svgSprite', () =>
                 // inline: true,
                 symbol:  {
                     dest: "",	
-                    sprite : "sprite.svg",
+                    sprite : "sprite.html",
                     // bust: true,
                 }
             }
         }))
-	.pipe(gulp.dest(config.dist + 'img'))
+	.pipe(gulp.dest(config.source + 'img'))
 );
 
 
@@ -80,6 +81,14 @@ gulp.task('pages', function() {
       partials: config.source + 'templates/partials/',
       helpers: config.source + 'templates/helpers/',
       data: config.source + 'templates/data/'
+    }))
+    .pipe(inject(gulp.src([config.source + '/img/sprite.html']), {
+        starttag: '<!-- inject:head:{{ext}} -->',
+        relative: true,
+        transform: function (filePath, file) {
+        // return file contents as string
+        return file.contents.toString('utf8')
+        }
     }))
     .pipe(gulp.dest(config.dist));
 });
@@ -144,7 +153,7 @@ gulp.task('fonts', () => {
 
 gulp.task('build', ['pages', 'purify-css', 'tinypng', 'imagemin-svg']);
 
-gulp.task('serve', ['pages', 'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
+gulp.task('serve', ['svgSprite',  'pages', 'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
     gulp.watch([config.source + 'templates/pages/**/*'], ['pages']);
     gulp.watch([config.source + 'templates/{layouts,partials,helpers,data}/**/*'], ['pages:reset']);
     gulp.watch([config.source + 'scss/**/*.scss'], ['sass', 'compress-sass']);
