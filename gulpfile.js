@@ -35,8 +35,8 @@ gulp.task('svgSprite', () =>
 var config = jsonfile.readFileSync('./config.json');
 
 var sassPaths = [
-    'bower_components/foundation-sites/scss',
-    'bower_components/motion-ui/src',
+    'node_modules/foundation-sites/scss',
+    'node_modules/motion-ui',
     'node_modules/normalize.css',
 ];
 
