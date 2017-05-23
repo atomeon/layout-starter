@@ -158,9 +158,14 @@ gulp.task('fonts', () => {
 //     .pipe(gulp.dest('/Users/atomeon/Dropbox/cabinet-markup'));
 // });
 
-gulp.task('build', ['pages', 'purify-css', 'tinypng', 'imagemin-svg']);
+gulp.task('fonts-transfer', function() {
+    return gulp.src(config.source + 'fonts/*')
+    .pipe(gulp.dest(config.dist + 'fonts/'));
+});
 
-gulp.task('serve', ['svgSprite',  'pages', 'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
+gulp.task('build', ['svgSprite', 'pages', 'fonts-transfer', 'purify-css', 'tinypng', 'imagemin-svg']);
+
+gulp.task('serve', ['svgSprite', 'pages','fonts-transfer',  'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
     gulp.watch([config.source + 'templates/pages/**/*'], ['pages']);
     gulp.watch([config.source + 'templates/{layouts,partials,helpers,data}/**/*'], ['pages:reset']);
     gulp.watch([config.source + 'scss/**/*.scss'], ['sass', 'compress-sass']);
