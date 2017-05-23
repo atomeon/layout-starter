@@ -113,9 +113,16 @@ gulp.task('js', function (cb) {
     pump([
         gulp.src([
             'node_modules/jquery/dist/jquery.min.js',
-            'bower_components/foundation-sites/dist/foundation.min.js',
-            'bower_components/dist/jquery.validate.min.js',
-            'bower_components/what-input/what-input.js',
+            'node_modules/foundation-sites/dist/js/foundation.js',
+            'node_modules/what-input/what-input.js',
+            // 'node_modules/jquery-validation/dist/jquery.validate.min.js',
+            // 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+            // 'node_modules/gsap/src/minified/TweenMax.min.js',
+            // 'node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js',
+            // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js',
+            // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js',
+            // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
+            // 'node_modules/slick-carousel/slick/slick.min.js',
             config.source + 'js/app.js'
             ]),
         concat('app.js'),
