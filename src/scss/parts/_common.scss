@@ -1,0 +1,73 @@
+.button {
+	height: rem(50);
+	min-width: rem(170);
+	margin: 0;
+	background-color: transparent;
+	border: 1px solid #000;
+
+	&:hover, &:focus {
+		background-color: #000;
+		color: #fff;
+	}
+}
+
+button {
+	cursor: pointer;
+	outline: none;
+}
+
+a {
+	color: inherit;
+	&:hover, &:focus {
+		color: inherit;
+	}
+}
+
+h1 {
+	font-weight: 900;
+	font-family: Roboto;
+	color: #000;
+	line-height: rem(50);
+	letter-spacing: rem(3);
+	text-transform: uppercase;
+	@include breakpoint(medium) {
+		letter-spacing: rem(6);
+	}
+}
+
+section {
+
+	&.pros, &.calc, &.services {
+		padding: rem(90) 0;
+	}
+
+	&.mform, &.insta {
+		padding: rem(60) 0;
+	}
+
+	&.tools {
+		padding: rem(120) 0;
+	}
+}
+
+.section__header {
+	text-align: center;	
+}
+.subtitle {
+	color: #000;
+	font-size: rem(18);
+}
+
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+    border: 1px solid #67808A;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+	color: #fff;
+	height: rem(50);
+	&:focus {
+		border-color: #000;
+		background-color: transparent;
+	}
+}
+
