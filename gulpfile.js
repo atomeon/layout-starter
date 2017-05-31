@@ -117,12 +117,12 @@ gulp.task('js', function (cb) {
             'node_modules/what-input/what-input.js',
             // 'node_modules/jquery-validation/dist/jquery.validate.min.js',
             // 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+            // 'node_modules/slick-carousel/slick/slick.min.js',
             // 'node_modules/gsap/src/minified/TweenMax.min.js',
             // 'node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js',
             // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js',
             // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js',
             // 'node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
-            // 'node_modules/slick-carousel/slick/slick.min.js',
             config.source + 'js/app.js'
             ]),
         concat('app.js'),

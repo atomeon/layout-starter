@@ -1,8 +1,10 @@
 @charset 'utf-8';
 
 @import 'components/fonts';
-
 @import 'components/variables';
+@import 'components/mixins';
+@import 'components/normalize';
+
 @import 'settings';
 
 @import 'motion-ui';
@@ -10,24 +12,28 @@
 
 @include foundation-everything();
 
-
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
-@import 'components/normalize';
-@import 'components/mixins';
+// import plug-ins here
 
-// .row .row {
-//     margin-left: 0;
-//     margin-right: 0;
-// }
+@import "node_modules/slick-carousel/slick/slick.scss";
+@import "node_modules/slick-carousel/slick/slick-theme.scss";
 
 html {
     background: #fff;
+
+    @media only screen and (min-device-width: 2300px) { 
+        font-size: 18px;
+    }
+    @media only screen and (min-device-width: 2500px) { 
+        font-size: 20px;
+    }
 }
 
 body { 
     position: relative;
+    background: transparent;
 }
 
 .wrapper {
@@ -56,4 +62,13 @@ body {
 
 
 @import 'parts/helpers';
+@import 'parts/common';
+
 // @import 'parts/nav';
+// @import 'parts/hero';
+// @import 'parts/pros';
+// @import 'parts/form';
+// @import 'parts/contacts';
+
+// @import 'parts/footer';
+// @import 'parts/slick-custom';
