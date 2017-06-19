@@ -4,7 +4,7 @@
     font-weight: 400;
     src: url('../fonts/exo2-regular-webfont.woff2') format('woff2'), /* Serve Woff2 to browsers who accept it fall back to woff below */
          url('../fonts/exo2-regular-webfont.woff') format('woff'), /* Safari, Android, iOS */
-         url('../fonts/exo2-regular-webfont.tff') format('truetype')
+         url('../fonts/exo2-regular-webfont.ttf') format('truetype')
 }
 
 @font-face {
@@ -13,12 +13,12 @@
     font-weight: 400;
     src: url('../fonts/exo2-italic-webfont.woff2') format('woff2'), /* Serve Woff2 to browsers who accept it fall back to woff below */
          url('../fonts/exo2-italic-webfont.woff') format('woff'), /* Safari, Android, iOS */
-         url('../fonts/exo2-italic-webfont.tff') format('truetype')
+         url('../fonts/exo2-italic-webfont.ttf') format('truetype')
 }
 @font-face {
     font-family: 'exo-two';
     font-weight: 600;
     src: url('../fonts/exo2-bold-webfont.woff2') format('woff2'), /* Serve Woff2 to browsers who accept it fall back to woff below */
          url('../fonts/exo2-bold-webfont.woff') format('woff'), /* Safari, Android, iOS */
-         url('../fonts/exo2-bold-webfont.tff') format('tff')
+         url('../fonts/exo2-bold-webfont.ttf') format('ttf')
 }
