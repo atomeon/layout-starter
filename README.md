@@ -16,5 +16,7 @@
 * gulp (сборка для разработки, также запускает browser-sync на http://localhost:3000)
 * gulp build (для production версии)
 
+* git remote set-url origin git://new.url.here (задать новый origin master для клона)
+
 
  
