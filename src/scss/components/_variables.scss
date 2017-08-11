@@ -5,7 +5,18 @@ $clr-main: #007EB1;
 $second-clr: #93C300;
 $third-clr: #67808A;
 
+
 // 2. Fonts
 // ---------
+$ff-main: 'avenir', 'Roboto', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$ff-second: 'playfair', 'Roboto', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $default-font-size: 16;
-$ff-second: 'bulletin', 'Roboto', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+
+// 3. Transition
+// ---------
+
+$global-trs: all .3s;
+
+// 4. Page min height
+// ---------
+$page-min-height: calc(100vh - 15.75rem);

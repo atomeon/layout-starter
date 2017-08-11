@@ -4,7 +4,7 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 var uglify = require('gulp-uglify');
 var pump = require('pump');
-var concat = require('gulp-concat')
+var concat = require('gulp-concat')d
 var rename = require("gulp-rename");
 var minify = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
@@ -163,9 +163,9 @@ gulp.task('fonts-transfer', function() {
     .pipe(gulp.dest(config.dist + 'fonts/'));
 });
 
-gulp.task('build', ['svgSprite', 'pages', 'fonts-transfer', 'purify-css', 'tinypng', 'imagemin-svg']);
+gulp.task('build', ['pages', 'fonts-transfer', 'purify-css', 'tinypng', 'imagemin-svg']);
 
-gulp.task('serve', ['svgSprite', 'pages','fonts-transfer',  'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
+gulp.task('serve', ['pages','fonts-transfer',  'tinypng', 'imagemin-svg', 'fonts', 'js', 'compress-sass', 'browser-sync'], function () {
     gulp.watch([config.source + 'templates/pages/**/*'], ['pages']);
     gulp.watch([config.source + 'templates/{layouts,partials,helpers,data}/**/*'], ['pages:reset']);
     gulp.watch([config.source + 'scss/**/*.scss'], ['sass', 'compress-sass']);

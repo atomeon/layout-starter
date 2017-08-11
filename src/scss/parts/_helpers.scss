@@ -1,3 +1,31 @@
+body { 
+	position: relative;
+	background: transparent;
+}
+
+.wrapper {
+	position: relative;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.cup {
+  cursor: pointer;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 0;
+    white-space: nowrap; /* 1 */
+}
+
 .posab-full {
 	position: absolute;
 	height: 100%;
@@ -6,17 +34,32 @@
 	left: 0;
 }
 
-.posab-cent {
+.posab-cent-h {
 	transform: translateX(-50%);
 	left: 50%;
 }
 
-.posab-cent-v  {
+.posab-cent-hv  {
 	position: absolute;
 	transform: translate(-50%, -50%);
 	left: 50%;
 	top: 50%;
 }
+
+.img-cover {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+}
+
+.img-contain {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	overflow: hidden;
+}
+
 
 .full-height {
 	height: 100%;
@@ -106,4 +149,11 @@
 
 .centered-column {
   @include grid-column-position(center);
+}
+
+
+
+.align-cm {
+  align-items: center;
+  justify-content: center;
 }
