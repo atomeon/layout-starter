@@ -151,7 +151,9 @@ body {
   @include grid-column-position(center);
 }
 
-
+.flex {
+	display: flex;
+}
 
 .align-cm {
   align-items: center;
